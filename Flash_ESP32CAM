@@ -119,3 +119,5 @@ void loop() {
   delay(1000); // 1 second on the same state
 }
 
+Video with results:
+https://user-images.githubusercontent.com/86330582/127750985-45f97fef-fba5-49ff-909b-2f1ddfa2966b.mp4
