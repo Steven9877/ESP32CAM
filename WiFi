@@ -47,6 +47,8 @@ void setup() {
   pinMode (led1, OUTPUT);// Se configura el pin como salida
   digitalWrite (statusLedPin, HIGH);// Se comienza con el led apagado
   digitalWrite (flashLedPin, LOW);// Se comienza con el led apagado
+  digitalWrite (led, LOW);// Se comienza con el led apagado
+  digitalWrite (led1, LOW);// Se comienza con el led apagado
 
   //Inicialización de comunicación serial
   Serial.begin (115200);
