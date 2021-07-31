@@ -1,4 +1,7 @@
 # ESP32CAM
+
+RESULTS reported as "Comment on the commit".
+
 Contains the following projects with ESP32CAM:
 
 -ESP32CAM as webcam
@@ -16,3 +19,5 @@ Material:
 -FTDI and its drivers on PC
 
 -Arduino IDE
+
+
