@@ -1,5 +1,5 @@
 # ESP32CAM
-Contains basic projects with ESP32CAM:
+Contains the following projects with ESP32CAM:
 
 -ESP32CAM as webcam
 
