@@ -11,6 +11,8 @@ Material:
 
 -ESP32CAM
 
+-Type A USB to type B USB 
+
 -FTDI and its drivers on PC
 
 -Arduino IDE
