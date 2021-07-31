@@ -1,1 +1,50 @@
 Using Arduino IDE, I installed all the packages needed to connect the ESP32CAM and use it through this IDE. 
+
+Follow the following steps in order:
+
+1.- File > Preferences > Additional Boards MAnager URLs:
+- We need the .json document that can be found on espressif (manufacturer of ESP32CAM) repository. So Arduino IDE
+can download the packages needed to compile for the ESP32CAM:
+                -https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json  
+
+2.- Tools > Board "Arduino Uno" (in my case) > Boards Manager:
+- Type "esp32" and install the board.
+
+4.- Tools > Board "Arduino Uno" > "AI ThinkerESP32CAM"
+           *CPU Frequency = 240Mhz
+           *Flash Frequency = 40Mhz (The crystal of ESP32CAM works at 40MHz)
+           *Flash mode = QIO
+           *Port = (The port where the FTDI is connected)
+.........................................................................................
+3.- Now you are ready to use the ESP32CAM. First make the physical connection between devices:
+-Take the ESP32CAM and the FTDI. Connect the transmission pin (UOT) of the ESP32CAM with the receptor pin (RX) of 
+the FTDI, and the receptor pin (UOR) of the ESP32CAM with the transmission pin (TX) of the FTDI. This will allow 
+communication between the ESP32CAM and the FTDI.
+
+-Connect ground of the ESP32CAM to ground of the ESP32CAM, and power input (VCC) of the FTDI with 5V of the 
+ESP32CAM. Remeber that you have two options 5 volts and 3.3 volts. The jumper of the FTDI has to be connecting the
+center and 5V. Now they have energy to wake up from their sleep.
+
+ESP32CAM    FTDI 
+UOT         RX
+UOR         TX
+5V/3.3V     VCC
+GND         GND
+......................
+4.- Let's upload the code:
+-File > Examples > ESP32 > CAmera > CameraWebServer
+           *In "Select camera model" select "#define CAMERA_MODEL_AI_THINKER" and comment the other.
+           *Change "ssid" with the name of your internet and "password" with the password of your internet.
+-Programming mode on the ESP32CAM:
+           *Connect IO0 pin to ground (GND).
+           *Hold reset button and click upload when you see "Connecting" hold off.
+           
+5.- Let's run the code:
+-Open "Serial Monitor"
+-Disconnect the bridge between IO0 and GND.
+-Click "reset" button
+-You will be given a http link and there is your "camera web server".
+-Copy the http link and paste it in the browser.
+
+PERFECT, NOW YOU ARE USING ESP32CAM.
+        
