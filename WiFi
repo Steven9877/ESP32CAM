@@ -1,5 +1,6 @@
 /*
  * Simple WiFi connection and LED lighting.
+ * If connected to the internet, LEDs will turn on
  * By: Axel Steven Paz
  * DAte: July 29 2021
  * 
@@ -111,4 +112,4 @@ void loop() {
 }// END void loop
 
 Video with the activity completed successfully:
-https://user-images.githubusercontent.com/86330582/127750284-aef2c2ab-4809-4ecd-8077-e6ab273c2426.mp4
+
