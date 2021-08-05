@@ -1,104 +1,114 @@
 /*
- * Conexión simple a WiFi y encendido de LEDS
- * Por: Axel Steven Paz
- * Fecha: 29 de Julio de 2021
+ * Simple WiFi connection and LED lighting.
+ * By: Axel Steven Paz
+ * DAte: July 29 2021
  * 
- * Este programa muestra una conexión básica a WiFi para 
- * ESP32CAM. Para ello es necesario que cambies el SSID y 
- * contraseña por los datos correspondientes a la red que 
- * deseas conectarte. Puedes observar el estado de la conexión 
- * con el monitor serial. No se requieren componentes adicionales.
+ * This program shows ESP32CAM basic connection to WiFi.
+ * You need to change SSID and password to the one of your network 
+ * connection. With serial monitor you can check connection state
  * 
- * En este programa se usan los leds soldados sobre la placa
- * ESP32CAM, el led flash y el led de status.
+ * We will need 4 LEDS on a Protoboard with 220 ohm resistor to each one,
+ * led flash and led status.
  * 
  * Componente     PinESP32CAM     Estados lógicos
  * ledStatus------GPIO 33---------On=>LOW, Off=>HIGH
  * ledFlash-------GPIO 4----------On=>HIGH, Off=>LOW
- * led------------GPIO 12---------On=>HIGH, Off=>LOW
- * led------------GPIO 13---------On=>HIGH, Off=>LOW
+ * led------------GPIO 12---------On=>HIGH, Off=>LOW  //OUTPUT pin for LED
+ * led------------GPIO 13---------On=>HIGH, Off=>LOW  //OUTPUT pin for LED
+ * led------------GPIO 4 ---------On=>HIGH, Off=>LOW  //OUTPUT pin for LED
+ * led------------GPIO 2 ---------On=>HIGH, Off=>LOW  //OUTPUT pin for LED
  */
 
-// Bibliotecas
-#include <WiFi.h>  // Biblioteca para manejar el WiFi del ESP32CAM
+// Libraries
+#include <WiFi.h>  // Library for ESP32CAM WiFi
 
-// Datos de Red
-const char* ssid = "INFINITUM87";  // Pon aquí el nombre de la red a la que deseas conectarte
-const char* password = "********";  // Escribe la contraseña de dicha red
+//  Network data
+const char* ssid = "INFINITUM87";  // Name of your network connection
+const char* password = "********";  // password of network connection
 
-// Objetos
-WiFiClient espClient; // Este objeto maneja las variables necesarias para una conexion WiFi
+// Objects
+WiFiClient espClient; // This object controls necessary variables for WiFi connection
 
-// Variables del programa
-int statusLedPin = 33;  // Esta variable controla el led de status
-int flashLedPin = 4; // Esta variable controla el led flash
-double timeLast, timeNow; // Variables para el control de tiempo no bloqueante
-double wait = 500;  // Espera de 500 mili segundos para consultar conexión
-bool statusLed = 0;// Bandera que me dice si el led esta encendido o apagado
-int led = 13;  // Pin de salida para encender led
-int led1 = 12;  // Pin de salida para encender led
+// Program variables
+int statusLedPin = 33;  // This variable controls led status
+int flashLedPin = 4; // This variable controls falsh led
+double timeLast, timeNow; // Variables for non-blocking time control
+double wait = 500;  // Wait 500 mili seconds to verify conexión
+bool statusLed = 0;// Flag that tells me if led is on or off
+int led = 13;  // OUTPUT pin to turn on LED
+int led1 = 12;  // OUTPUT pin to turn on LED
+int led2 = 4;  // OUTPUT pin to turn on LED
+int led3 = 2;  // OUTPUT pin to turn on LED
 
-// Inicialización del programa
+// Program initialization
 void setup() {
-  //Configuración de pines
-  pinMode (statusLedPin, OUTPUT);// Se configura el pin como salida
-  pinMode (flashLedPin, OUTPUT);// Se configura el pin como salida
-  pinMode (led, OUTPUT);// Se configura el pin como salida
-  pinMode (led1, OUTPUT);// Se configura el pin como salida
-  digitalWrite (statusLedPin, HIGH);// Se comienza con el led apagado
-  digitalWrite (flashLedPin, LOW);// Se comienza con el led apagado
-  digitalWrite (led, LOW);// Se comienza con el led apagado
-  digitalWrite (led1, LOW);// Se comienza con el led apagado
+  //Pin configuration
+  pinMode (statusLedPin, OUTPUT);// Pin configured as OUTPUT
+  pinMode (flashLedPin, OUTPUT);// Pin configured as OUTPUT
+  pinMode (led, OUTPUT);// Pin configured as OUTPUT
+  pinMode (led1, OUTPUT);// Pin configured as OUTPUT
+  pinMode (led2, OUTPUT);// Pin configured as OUTPUT
+  pinMode (led3, OUTPUT);// Pin configured as OUTPUT
+  digitalWrite (statusLedPin, LOW);// Initial state DOWN
+  digitalWrite (flashLedPin, LOW);// Initial state DOWN
+  digitalWrite (led, LOW);// Initial state DOWN
+  digitalWrite (led1, LOW);// Initial state DOWN
+  digitalWrite (led2, LOW);// Initial state DOWN
+  digitalWrite (led3, LOW);// Initial state DOWN
 
-  //Inicialización de comunicación serial
+  //Serial communication initialization 
   Serial.begin (115200);
   Serial.println();
   Serial.println();
-  Serial.print("Conectando a ");
+  Serial.print("Connecting to ");
   Serial.println(ssid);
  
-  // Iniciar el WiFi
-  WiFi.begin(ssid, password); // Esta es la función que realiz la conexión a WiFi
+  // Start WiFi
+  WiFi.begin(ssid, password); // This function performs WiFi connection
  
-  while (WiFi.status() != WL_CONNECTED) { // Este bucle espera a que se realice la conexión
+  while (WiFi.status() != WL_CONNECTED) { // This loop waits for WiFi connection
     digitalWrite (statusLedPin, HIGH);
-    delay(500); //dado que es de suma importancia esperar a la conexión, debe usarse espera bloqueante
+    delay(500); //It is important to wait for connection, blocking wait should be used
     digitalWrite (statusLedPin, LOW);
-    Serial.print(".");  // Indicador de progreso
+    Serial.print(".");  // Progress inicator
     delay (5);
   }
 
-  // Cuando se haya logrado la conexión, el programa avanzará, por lo tanto, puede informarse lo siguiente
+  // If successful connection the program continious, therefore, the following can be informed
   Serial.println();
-  Serial.println("WiFi conectado");
-  Serial.println("Direccion IP: ");
+  Serial.println("WiFi connected");
+  Serial.println("IP Address: ");
   Serial.println(WiFi.localIP());
 
-  // Si se logro la conexión, encender led
+  // Successful connection, turn on LED
   if (WiFi.status () > 0){
   digitalWrite (flashLedPin, LOW);
   }
-  timeLast = millis (); // Inicia el control de tiempo
+  timeLast = millis (); // Start time control
 }// Fin del void setup 
 
-//Cuerpo del programa, bucle principal
+//Body of the program, main loop
 void loop() {
-  timeNow = millis ();  // Seguimiento de tiempo
-  if ((timeNow - timeLast > wait) && statusLed == 0){// Comprobar el encendido del flash
-    digitalWrite (flashLedPin, HIGH);// Encender el flash
-    digitalWrite (led, HIGH);// Encender el flash
-    digitalWrite (led1, HIGH);// Encender el flash
-    statusLed = 1;//Indicar que el led flash se encuentra encendido
-    timeLast = millis (); // Inicia el control de tiempo
+  timeNow = millis ();  // Time tracking
+  if ((timeNow - timeLast > wait) && statusLed == 0){// Check flash on 
+    digitalWrite (flashLedPin, HIGH);// Turn on flash
+    digitalWrite (led, HIGH);// Turn on LED
+    digitalWrite (led1, HIGH);// Turn on LED
+    digitalWrite (led2, HIGH);// Turn on LED
+    digitalWrite (led3, HIGH);// Turn on LED
+    statusLed = 1;//Indicates led flash is on
+    timeLast = millis (); // Starts time control
   }
   if ((timeNow - timeLast > wait) && statusLed == 1){
-    digitalWrite (flashLedPin, LOW);// Apagar Led el flash
-    digitalWrite (led, LOW);// Apagar Led el flash
-    digitalWrite (led1, LOW);// Apagar Led el flash
-    statusLed = 0;//Indicar que el led flash se encuentra apagado
-    timeLast = millis (); // Inicia el control de tiempo
+    digitalWrite (flashLedPin, LOW);// Turn off flash
+    digitalWrite (led, LOW);// Turn off LED
+    digitalWrite (led1, LOW);// Turn off LED
+    digitalWrite (led2, LOW);// Turn off LED
+    digitalWrite (led3, LOW);// Turn off LED
+    statusLed = 0;//Indicates led flash is off
+    timeLast = millis (); // Starts time control
   }
-}// Fin de void loop
+}// END void loop
 
 Video with the activity completed successfully:
 https://user-images.githubusercontent.com/86330582/127750284-aef2c2ab-4809-4ecd-8077-e6ab273c2426.mp4
