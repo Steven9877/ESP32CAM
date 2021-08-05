@@ -2,6 +2,8 @@
 
 ## Videos with circuit working as a link at the end of every section
 
+### Note: Read comentaries at the beggining of every section to get informed of relevant aspects withing the section.
+
 **Contains the following projects with ESP32CAM:**
 
 - ESP32CAM as webcam
