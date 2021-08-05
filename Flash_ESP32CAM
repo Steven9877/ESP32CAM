@@ -1,4 +1,7 @@
-//CAmera web server that turns on flash when connected
+//Camera web server that turns on flash when it starts working
+//Detailed connections on:
+//https://github.com/Steven9877/ESP32CAM/blob/main/Webcam
+//The only thing that changes is the ESP32CAM flash turning on. In "Void loop" I make it blink but you can erase delay and LOW state to make it continuos.
 
 #include "esp_camera.h"
 #include <WiFi.h>
@@ -120,4 +123,4 @@ void loop() {
 }
 
 Video with results:
-https://user-images.githubusercontent.com/86330582/127750985-45f97fef-fba5-49ff-909b-2f1ddfa2966b.mp4
+
