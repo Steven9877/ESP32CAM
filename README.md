@@ -1,6 +1,6 @@
 # ESP32CAM
 
-RESULTS reported as "Comment on the commit".
+Videos with circuit working as a link at the end of every section.
 
 Contains the following projects with ESP32CAM:
 
