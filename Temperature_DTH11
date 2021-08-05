@@ -40,3 +40,7 @@ void loop() {
   Serial.print(f);
   
 }
+
+
+Link to video:
+https://user-images.githubusercontent.com/86330582/128274143-068ecc37-65ae-45cd-b380-f87a1e03ca47.mp4
