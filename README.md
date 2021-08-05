@@ -16,6 +16,8 @@ Contains the following projects with ESP32CAM:
 
 Material:
 
+-Protoboard
+
 -ESP32CAM 
 
 -Type A USB to type B USB 
