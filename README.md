@@ -5,6 +5,7 @@ RESULTS reported as "Comment on the commit".
 Contains the following projects with ESP32CAM:
 
 -ESP32CAM as webcam
+
          -Explains the basic configuration of ESP32CAM. You will need this to understand all the repository.
 
 -ESP32CAM as webcam turning on flash
@@ -15,13 +16,19 @@ Contains the following projects with ESP32CAM:
 
 Material:
 
--ESP32CAM
+-ESP32CAM 
 
 -Type A USB to type B USB 
 
--FTDI and its drivers on PC
+-FTDI and its drivers on PC 
 
 -Arduino IDE
 
--Jumper/DuPont wire
+-Jumper/DuPont wire 
+
+-Resistors (4.7k, 1k, 10k, 220)
+
+-DTH11 
+
+
 
