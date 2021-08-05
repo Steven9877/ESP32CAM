@@ -1,7 +1,9 @@
 // This code is to read temperature through a sensor and report it within the serial terminal of Arduino IDE.
 
+// *******  IMPORTANT: Check the link at the end to see connections.  *******
+
 // *******  IMPORTANT: Before uploading code make sure VCC of DTH11 is not connected. After uploading the code connect VCC.  *******
-// *******  IMPORTANT: The code on the video has the celsius and fahrenheit degrees switched. This code works as it has to.  *******
+// *******  IMPORTANT: You may not need a resistor. If it's not working properly disconnet the resistor.  *******
 // *******  IMPORTANT: The sensor is fragile. Make sure to connect it carefully.  *******
 
 // Tools > Manage Libraries...> Write "dht" > Install the one by "Adafruit" and accept all the prompt messages
@@ -43,4 +45,3 @@ void loop() {
 
 
 Link to video:
-https://user-images.githubusercontent.com/86330582/128274143-068ecc37-65ae-45cd-b380-f87a1e03ca47.mp4
