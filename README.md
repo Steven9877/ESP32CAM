@@ -1,36 +1,42 @@
 # ESP32CAM
 
-Videos with circuit working as a link at the end of every section.
+## Videos with circuit working as a link at the end of every section
 
-Contains the following projects with ESP32CAM:
+**Contains the following projects with ESP32CAM:**
 
--ESP32CAM as webcam
+- ESP32CAM as webcam
 
-         -Explains the basic configuration of ESP32CAM. You will need this to understand all the repository.
+> Explains the basic configuration of ESP32CAM. You will need this to understand all the repository.
 
--ESP32CAM as webcam turning on flash
+- ESP32CAM as webcam turning on flash
 
--ESP32CAM turning on flash and leds when connected to the internet
+> The only thing that changes is that we will turn on the ESP32CAM flash that it has.
 
--Temperature with DTH11 and ESP32CAM 
+- ESP32CAM turning on flash and leds when connected to the internet
 
-Material:
+> We will add 4 LEDs and turned them on when the ESP32CAM gets connected to the internet.
 
--Protoboard
+- Temperature with DTH11 and ESP32CAM 
 
--ESP32CAM 
+> With a DTH11 (temperature and humidity sensor) we will deploy in the serial terminal the temperature of the place we are in.
 
--Type A USB to type B USB 
+**Material:**
 
--FTDI and its drivers on PC 
+- Protoboard
 
--Arduino IDE
+- ESP32CAM 
 
--Jumper/DuPont wire 
+- Type A USB to type B USB 
 
--Resistors (4.7k, 1k, 10k, 220)
+- FTDI and its drivers on PC 
 
--DTH11 
+- Arduino IDE
+
+- Jumper/DuPont wire 
+
+- Resistors (4.7k, 1k, 10k, 220)
+
+- DTH11 
 
 
 
