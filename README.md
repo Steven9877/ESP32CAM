@@ -22,6 +22,8 @@
 
 > With a DTH11 (temperature and humidity sensor) we will deploy in the serial terminal the temperature of the place we are in.
 
+![](https://github.com/Steven9877/ESP32CAM_G2/blob/main/Images/DHT11.png) | ![](https://github.com/Steven9877/ESP32CAM_G2/blob/main/Images/DHT11_ESP32CAM.png)
+
 **Material:**
 
 - Protoboard
