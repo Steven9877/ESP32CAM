@@ -1,0 +1,42 @@
+// This code is to read temperature through a sensor and report it within the serial terminal of Arduino IDE.
+
+// *******  IMPORTANT: Before uploading code make sure VCC of DTH11 is not connected. After uploading the code connect VCC.  *******
+// *******  IMPORTANT: The code on the video has the celsius and fahrenheit degrees switched. This code works as it has to.  *******
+// *******  IMPORTANT: The sensor is fragile. Make sure to connect it carefully.  *******
+
+// Tools > Manage Libraries...> Write "dht" > Install the one by "Adafruit" and accept all the prompt messages
+
+#include "DHT.h" // Library with all the physical parameters of the sensor
+
+#define DHTPIN 12 // A variable with the pin we are working with is defined (PIN 12 of the ESP32ÇAM)
+
+#define DHTTYPE DHT11 // Sensor model we are working with
+
+ 
+DHT dht(DHTPIN, DHTTYPE); // Defining the input pin and the sensor model
+
+void setup() {
+  Serial.begin(115200); // Baud rate 
+  Serial.println(F("Prueba de coenxion"));
+
+  dht.begin(); // Initializing sensor
+}
+
+void loop() {
+  delay(2000); // Waiting for the sensor to stabilize 
+
+  float t = dht.readTemperature(); // Temperature in Celsius (decimal value)
+  float f = dht.readTemperature(true); // Temperature in Fahrenheit (decimal value)
+  
+  if ( isnan(t) || isnan(f)) {
+    Serial.println(F("No hay conexion")); // Error message if it's not working
+    return;
+  }
+
+ 
+  Serial.print(F("Temperatura en °F\n")); // Prints the temperature
+  Serial.print(t);
+  Serial.print(F("Temperatura en °C\n")); // Prints the temperature
+  Serial.print(f);
+  
+}
