@@ -12,11 +12,11 @@
 
 - ESP32CAM as webcam turning on flash
 
-> The only thing that changes is that we will turn on the ESP32CAM flash that it has.
+> The only thing that changes is that we will turn on the ESP32CAM flash.
 
 - ESP32CAM turning on flash and leds when connected to the internet
 
-> We will add 4 LEDs and turned them on when the ESP32CAM gets connected to the internet.
+> We will add 4 LEDs and turn them on when the ESP32CAM gets connected to the internet.
 
 - Temperature with DTH11 and ESP32CAM 
 
